@@ -1,5 +1,12 @@
 package com.github.testng;
 
+import com.github.exception.ReportConfigException;
+import com.github.internal.HtmlBuilder;
+import com.github.internal.Utils;
+import com.github.internal.Utils.ExecutionResults;
+import org.testng.*;
+import org.testng.xml.XmlSuite;
+
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -8,27 +15,13 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import org.testng.IReporter;
-import org.testng.ISuite;
-import org.testng.ISuiteResult;
-import org.testng.ITestContext;
-import org.testng.ITestListener;
-import org.testng.ITestResult;
-import org.testng.TestNG;
-import org.testng.xml.XmlSuite;
-
-import com.github.exception.ReportConfigException;
-import com.github.internal.HtmlBuilder;
-import com.github.internal.Utils;
-import com.github.internal.Utils.ExecutionResults;
-
 public class MetricsListener implements IReporter, ITestListener {
   private StringBuilder builder = new StringBuilder();
   private static String outdir;
 
   @Override
   public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites,
-      String outputDirectory) {
+                             String outputDirectory) {
     String logo =
         System.getProperty("testng.metrics.logo", "https://i.ibb.co/9qBkwDF/Testing-Fox-Logo.png");
     ExecutionResults results = Utils.computeOverResults(suites);

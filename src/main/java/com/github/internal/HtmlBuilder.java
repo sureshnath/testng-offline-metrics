@@ -1,15 +1,14 @@
 package com.github.internal;
 
+import com.github.internal.Utils.ExecutionResults;
+import org.testng.ISuiteResult;
+import org.testng.ITestResult;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-
-import org.testng.ISuiteResult;
-import org.testng.ITestResult;
-
-import com.github.internal.Utils.ExecutionResults;
 
 public class HtmlBuilder {
 
@@ -310,7 +309,7 @@ public class HtmlBuilder {
         }
       }
       cTotalSteps = cPassSteps + cFailSteps + cSkipSetps;
-      float cPassPercentage = (cPassSteps*100)/cTotalSteps;
+      float cPassPercentage = cTotalSteps==0?0: (cPassSteps*100)/cTotalSteps;
       builder
           .append(String.format("<td style=\"text-align:center\">%s</td>\r\n", cTotalSteps))
           .append(String.format("<td style=\"text-align:center\">%s</td>\r\n", cPassSteps))
